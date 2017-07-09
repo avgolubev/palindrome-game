@@ -30,7 +30,9 @@ public class DataProcessingInMemory implements IDataProcessing {
 
     @Override
     public int addScore(String userName, int score) {
-        return SCORE_MAP.compute(userName, (k, v) -> v == null ? score : v + score);
+        synchronized (SCORE_MAP) {
+            return SCORE_MAP.compute(userName, (k, v) -> v == null ? score : v + score);
+        }
     }
     
     @Override
