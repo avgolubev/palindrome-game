@@ -30,9 +30,7 @@ public class DataProcessingInMemory implements IDataProcessing {
 
     @Override
     public int addScore(String userName, int score) {
-        synchronized (SCORE_MAP) {
-            return SCORE_MAP.compute(userName, (k, v) -> v == null ? score : v + score);
-        }
+        return SCORE_MAP.compute(userName, (k, v) -> v == null ? score : v + score);
     }
     
     @Override
@@ -43,12 +41,10 @@ public class DataProcessingInMemory implements IDataProcessing {
     @Override
     public Map getTopUsers() {
         Map<String, Integer> map = new HashMap<>();
-        synchronized (SCORE_MAP) {
-            SCORE_MAP.entrySet().stream()
-                    .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
-                    .limit(5)
-                    .forEach(e -> map.put(e.getKey(), e.getValue()));
-        }
+        SCORE_MAP.entrySet().stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .limit(5)
+                .forEach(e -> map.put(e.getKey(), e.getValue()));
         return map;
     }
     
