@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru" ng-app="PalindromeGameApp">
+    <head>
+        <title>Проверь фразу</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <script src="angular.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <br><br>
+
+        <div class="narrow-button"  ng-controller="PalindromeGameController as ctrl">
+
+            <div >
+
+                <p><input type="text" placeholder="имя пользователя" class="form-control" ng-model="ctrl.userName">
+                    <input type="text" placeholder="фраза" class="form-control" ng-model="ctrl.phrase">
+                </p>
+
+                <p> <button class="btn btn-primary" ng-click="ctrl.checkPhrase(ctrl.userName, ctrl.phrase);">
+                        Проверь!</button></p>
+                <p>Ваш результат: {{ctrl.score}}</p>
+                <p class="error" ng-if="ctrl.error"> Ошибка: {{ctrl.error}}   </p> 
+
+            </div>
+
+
+            <div >
+
+                <button class="btn btn-primary" ng-click="ctrl.getTop();">
+                    Получить список 5 победителей</button>
+                
+            <table class=" table-hover" width="100%" border=1>
+                <tr ng-if="ctrl.top.length > 0">
+                    <th>№ п/п</th>          
+                    <th>Имя пользователя</th>
+                    <th>Очки</th>
+                </tr>
+                <tr ng-repeat="item in ctrl.top">
+                    <td>{{ $index + 1}}</td>
+                    <td>{{ item.userName}}</td>
+                    <td>{{ item.score}}</td>
+                </tr>
+            </table>
+
+            <p class="error" ng-if="ctrl.top.length === 0">Список пользователей пуст</p>          
+        
+            </div>
+            
+        </div>
+
+
+    </body>
+</html>
+
