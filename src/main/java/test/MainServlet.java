@@ -18,12 +18,12 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String result;
-        request.setCharacterEncoding("UTF-8");request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf8");
         response.setHeader("Cache-Control", "no-cache");
-        synchronized (dataProcessing) {
-            result = Utils.topToJsonString(dataProcessing.getTopUsers());
-        }
+        
+        result = Utils.topToJsonString(dataProcessing.getTopUsers());
+
         try (PrintWriter out = response.getWriter()) {
             out.write(result);
         }
