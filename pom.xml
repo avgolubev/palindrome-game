@@ -7,6 +7,12 @@
   <version>1.0</version>
   <name>palindrome-game Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <properties>
+    <version-scala>2.12.4</version-scala>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -15,23 +21,73 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${version-scala}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.alchim31.maven</groupId>
+      <artifactId>scala-maven-plugin</artifactId>
+      <version>3.4.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.typesafe.play</groupId>
+      <artifactId>play-json_2.12</artifactId>
+      <version>2.6.7</version>
+    </dependency>    
   </dependencies>
   <build>
     <finalName>palindrome-game</finalName>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>net.alchim31.maven</groupId>
+          <artifactId>scala-maven-plugin</artifactId>
+          <version>3.4.2</version>
+
+          <configuration>
+            <scalaVersion>${version-scala}</scalaVersion>
+            <args>
+              <arg>-deprecation</arg>
+              <arg>-explaintypes</arg>
+              <arg>-feature</arg>
+              <arg>-optimise</arg>
+              <arg>-unchecked</arg>
+            </args>
+          </configuration>
+
+          <executions>
+            <execution>
+              <id>scala-compile</id>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>add-source</goal>
+                <goal>compile</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>scala-compile-tests</id>
+              <phase>process-test-resources</phase>
+              <goals>
+                <goal>testCompile</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+      </plugin>
+    </plugins>    
   </build>
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+
 </project>
