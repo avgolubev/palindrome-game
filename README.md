@@ -1,12 +1,12 @@
-## Тестовый код
+## Scala and servlets
 
-### Установка
+### Install
 
 #### git clone https://github.com/avgolubev/palindrome-game
 #### cd palindrome-game
 #### mvn clean install
 #### cd target
-#### разместить palindrome-game.war в webapps томкэта
-#### по адресу http://localhost:8080/palindrome-game доступен UI для тестирования
+#### deploy palindrome-game.war in tomcat's webapps catalog
+#### use in browser http://localhost:8080/palindrome-game
 
 
