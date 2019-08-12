@@ -12,30 +12,34 @@
     <body>
         <br><br>
 
-        <div class="narrow-button"  ng-controller="PalindromeGameController as ctrl">
+        <div class="container" ng-controller="PalindromeGameController as ctrl">
 
-            <div >
+            <div class="form-group" >
 
-                <p><input type="text" placeholder="имя пользователя" class="form-control" ng-model="ctrl.userName">
-                    <input type="text" placeholder="фраза" class="form-control" ng-model="ctrl.phrase">
-                </p>
+                <input type="text" placeholder="имя пользователя" class="form-control" ng-model="ctrl.userName">
+                <input type="text" placeholder="фраза" class="form-control" ng-model="ctrl.phrase">
+            </div>
 
-                <p> <button class="btn btn-primary" ng-click="ctrl.checkPhrase(ctrl.userName, ctrl.phrase);">
-                        Проверь!</button></p>
-                <p>Ваш результат: {{ctrl.score}}</p>
-                <p class="error" ng-if="ctrl.error"> Ошибка: {{ctrl.error}}   </p> 
+            <br><br>
+            <div class="form-group narrow-button" >
+                <button class="btn btn-primary" ng-click="ctrl.checkPhrase(ctrl.userName, ctrl.phrase);">
+                        Проверь!</button>
+            </div>
 
+            <div class="form-group narrow-button" >
+                <button class="btn btn-primary" ng-click="ctrl.getTop();">
+                    Получить список 5 победителей</button>
+            </div>
+            <br><br><br>
+            <div class="form-group" >
+                Ваш результат: {{ctrl.score}}
+                <a class="error" ng-if="ctrl.error"> Ошибка: {{ctrl.error}} </a>
             </div>
 
 
-            <div >
-
-                <button class="btn btn-primary" ng-click="ctrl.getTop();">
-                    Получить список 5 победителей</button>
-                
             <table class=" table-hover" width="100%" border=1>
                 <tr ng-if="ctrl.top.length > 0">
-                    <th>№ п/п</th>          
+                    <th>№ п/п</th>
                     <th>Имя пользователя</th>
                     <th>Очки</th>
                 </tr>
@@ -46,13 +50,12 @@
                 </tr>
             </table>
 
-            <p class="error" ng-if="ctrl.top.length === 0">Список пользователей пуст</p>          
-        
-            </div>
-            
+            <div class="error" ng-if="ctrl.top.length === 0">Список пользователей пуст</div>
+
+
+
         </div>
 
 
     </body>
 </html>
-
